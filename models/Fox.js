@@ -1,9 +1,19 @@
 const mongoose = require('mongoose');
+const { type } = require('os');
 
 const FoxSchema = new mongoose.Schema({
-  imageUrl: String,
-  votes: { type: Number, default: 0 },
-  // Add more fields as needed
+  imageUrl: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  votes: {
+    type: Number,
+    default: 0
+  },
+  foxNumber: { type: Number,
+   unique: true
+  } 
 });
 
 module.exports = mongoose.model('Fox', FoxSchema);

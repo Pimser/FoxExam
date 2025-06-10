@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+
+<h2 style="text-align:center; margin-top:2rem;">Alle Rever Rangsjert</h2>
+<% if (error) { %>
+  <p style="color: #ff6f61; text-align:center;"><%= error %></p>
+<% } %>
+
+<ol class="all-foxes-list">
+  <% allFoxes.forEach(function(fox, idx) { %>
+    <li class="all-foxes-list-item">
+      <span class="all-foxes-rank">#<%= idx+1 %></span>
+      <img src="<%= fox.imageUrl %>" alt="Fox" class="all-foxes-img"/>
+      <span class="all-foxes-number">fox <%= fox.foxNumber %></span>
+      <span class="all-foxes-votes">votes: <%= fox.votes %></span>
+    </li>
+  <% }) %>
+</ol>

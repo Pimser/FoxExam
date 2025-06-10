@@ -1,11 +1,42 @@
-<%- include("partials/header") -%>
+<%- include('partials/header') %>
 
-<h1>Top 3 Cutest Foxes</h1>
-<div id="top-foxes">
-  <!-- Top fox images and stats will be rendered here -->
+<h2 style="text-align:center; margin-top:2rem;">Top 3 Cutest Foxes</h2>
+
+<% if (cutestFox) { %>
+  <h3 style="text-align:center; margin-top:2rem;">
+    Cutest fox is <span style="color:#ff9800; text-shadow:0 0 8px #ff980088;">fox <%= cutestFox.foxNumber %></span>!
+  </h3>
+<% } %>
+
+<div class="fox-stats-container">
+  <% topFoxes.forEach(function(fox, idx) { %>
+    <div class="fox-card stat-card">
+      <div class="rank-badge rank-<%= idx+1 %>">#<%= idx+1 %></div>
+      <img src="<%= fox.imageUrl %>" alt="Fox" class="fox-img"/>
+      <div class="fox-number-label">fox <%= fox.foxNumber %></div>
+      <div class="votes-count">
+        <span>Total votes:</span>
+        <span class="votes-number"><%= fox.votes %></span>
+      </div>
+    </div>
+  <% }) %>
 </div>
 
-<h2>Top 30 Foxes</h2>
-<div id="top-30-foxes">
-  <!-- Top 30 fox images and stats will be rendered here -->
+<h2 style="text-align:center; margin-top:3rem;">Top 4–10 Foxes</h2>
+<div class="fox-top10-list">
+  <% top10Foxes.slice(3).forEach(function(fox, idx) { %>
+    <div class="fox-card stat-card top10-small-card">
+      <div class="rank-badge top10-badge">#<%= idx+4 %></div>
+      <img src="<%= fox.imageUrl %>" alt="Fox" class="fox-img-small"/>
+      <div class="fox-number-label-small">fox <%= fox.foxNumber %></div>
+      <div class="votes-count">
+        <span>Total votes:</span>
+        <span class="votes-number"><%= fox.votes %></span>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<div style="text-align:center; margin: 3rem 0 2rem 0;">
+  <a href="/all-foxes" class="view-all-btn">View All</a>
 </div>

@@ -2,19 +2,20 @@ const express = require('express');
 const router = express.Router();
 const foxController = require('../controllers/foxController');
 
-// Define routes here
-// router.get('/', ...);
 
+//GET
 router.get('/', foxController.getIndex);
 
-// Voting page (shows foxes to vote on)
-router.get('/vote', foxController.getVotePage);
+router.get('/vote', foxController.getVotePage); //stemme siden
 
-// Handle voting (user submits a vote)
-router.post('/vote', foxController.submitVote);
+router.get('/statistics', foxController.getStatistics); //side med statistikk
 
-// Statistics page (shows top foxes)
-router.get('/statistics', foxController.getStatistics);
+router.get("/all-foxes", foxController.getAllFoxes); //henter alle rever
+
+//POST
+router.post('/vote', foxController.submitVote); //håntering av stemmer
+
+
 
 
 module.exports = router;

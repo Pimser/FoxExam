@@ -1,11 +1,21 @@
-<%- include("partials/header") -%>
+<%- include('partials/header') %>
 
-<body>
-  <h1>Vote here:</h1>
-  <div>
-    option 1
-  </div>
-  <div>
-    option 2
-  </div>
-</body>
+
+
+<h2 style="text-align:center; margin-top:2rem;">Which is cutest?</h2>
+<% if (error) { %>
+  <p style="color: #ff6f61; text-align:center;"><%= error %></p>
+<% } %>
+
+<div class="fox-vote-container">
+  <% foxes.forEach(function(fox, idx) { %>
+    <div class="fox-card">
+      <img src="<%= fox %>" alt="Cute Fox" class="fox-img"/>
+      <form action="/vote" method="POST">
+        <input type="hidden" name="foxImage" value="<%= fox %>">
+        <button type="submit" class="vote-btn">Vote</button>
+      </form>
+    </div>
+  <% }) %>
+</div>
+
